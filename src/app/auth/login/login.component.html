@@ -1,0 +1,28 @@
+<div class="min-h-screen flex justify-center items-center flex-wrap">
+
+  <div class="bg-gray-800/75 p-2 text-white rounded-lg shadow-lg">
+    <h2 class="text-center w-full mb-2 text-xl">Iniciar Sesion</h2>
+    <form [formGroup]="loginForm" class="example-form">
+      <mat-form-field class="w-full">
+        <mat-label>Email</mat-label>
+        <input matInput class="border">
+        <mat-error *ngIf="loginForm.controls['email'].hasError('email') && !loginForm.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
+            Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    
+      <mat-form-field class="w-full">
+        <mat-label>Contrase'ia</mat-label>
+        <input matInput type="password">
+      </mat-form-field>
+      <div class="mt-2">
+        <span class="bg-rose-400 py-1.5 rounded-lg mt-4">
+            <button mat-button color="primary" [disabled]="loginForm.invalid">Iniciar Sesion</button>
+        </span>
+    </div>
+    </form>
+  </div>
+</div>

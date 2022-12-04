@@ -1,0 +1,56 @@
+<div class="min-h-screen flex justify-center items-center flex-wrap">
+    <div class="bg-gray-800/75 sm:w-6/12 p-2 text-white rounded-lg shadow-lg">
+      <h2 class="text-center w-full mb-2 text-xl">Registrarse</h2>
+        <form (ngSubmit)="registerSubmit(registerForm)" [formGroup]="registerForm" class="example-form">
+            <mat-form-field class="w-full">
+                <mat-label>Nombre</mat-label>
+                <input formControlName="name" matInput class="border">
+                <mat-error *ngIf="registerForm.controls['name'].hasError('required')">
+                    El nombre es <strong>necesario</strong>
+                </mat-error>
+                <mat-error *ngIf="registerForm.controls['name'].hasError('minlength')">
+                    El nombre debe contener almenos <strong>4 caracteres</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-full">
+                <mat-label>Apellido</mat-label>
+                <input formControlName="lastname" matInput class="border">
+                <mat-error *ngIf="registerForm.controls['lastname'].hasError('required')">
+                    El apellido es <strong>necesario</strong>
+                </mat-error>
+                <mat-error *ngIf="registerForm.controls['lastname'].hasError('minlength')">
+                    El apellido debe contener almenos <strong>7 caracteres</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-full">
+                <mat-label>Email</mat-label>
+                <input formControlName="email" matInput class="border">
+                <mat-error *ngIf="registerForm.controls['email'].hasError('email') && !registerForm.hasError('required')">
+                    Please enter a valid email address
+                </mat-error>
+                <mat-error *ngIf="registerForm.controls['email'].hasError('required')">
+                    Email is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+        
+            <mat-form-field class="w-full">
+                <mat-label>Contrase'ia</mat-label>
+                <input formControlName="password" matInput type="password">
+                <mat-error *ngIf="registerForm.controls['password'].hasError('required')">
+                    La contrasenia es <strong>necesaria</strong>
+                </mat-error>
+                <mat-error *ngIf="registerForm.controls['password'].hasError('minlength')">
+                    La contrasen'ia debe contener almenos <strong>7 caracteres</strong>
+                </mat-error>
+            </mat-form-field>
+            <div class="mt-2">
+                <span class="bg-rose-400 py-1.5 rounded-lg mt-4">
+                    <button mat-button color="primary" [disabled]="registerForm.invalid">Iniciar Sesion</button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+
+{{registerForm.controls['password'].errors | json}}
+<!-- {{registerForm.controls['email']?.hasError('email') | json}} -->
