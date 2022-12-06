@@ -1,0 +1,55 @@
+<app-employee-form *ngIf="openModalForm" (closeModal)="openModalForm = $event"></app-employee-form>
+<div class="w-full flex items-center flex-col flex-wrap items-center py-16 bg-gray-300">
+
+    <h2 class="text-center text-2xl mb-2 font-semi-bold">Empleados</h2>
+    <div class="w-full">
+      <p class="mx-2 mb-2 bg-rose-400/75 w-fit p-2 rounded-lg text-gray-700 cursor-pointer" (click)="addEmployee()">Agregar Empleado</p>
+    </div>
+    
+    <table #table mat-table [dataSource]="employees" class="mat-elevation-z8 w-full" matSort>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Nombre</th>
+          <td mat-cell *matCellDef="let element"> {{element.name + ' ' + element.lastname}}</td>
+        </ng-container>
+        <ng-container matColumnDef="age">
+            <th mat-header-cell *matHeaderCellDef> Edad: </th>
+            <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+        </ng-container>
+        <ng-container matColumnDef="occupation">
+          <th mat-header-cell *matHeaderCellDef> Rol/ocupacion </th>
+          <td mat-cell *matCellDef="let element"> {{element.occupation}} </td>
+        </ng-container>
+        <ng-container matColumnDef="salary">
+            <th mat-header-cell *matHeaderCellDef> Salario </th>
+            <td mat-cell *matCellDef="let element"> {{element.salary | currency}} </td>
+        </ng-container>
+        <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef> Celular </th>
+            <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+        </ng-container>
+        <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef> Direccion </th>
+            <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+        </ng-container>
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Rol/ocupacion </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+          </ng-container>
+        <ng-container matColumnDef="dateAdmission">
+            <th mat-header-cell *matHeaderCellDef>Fecha de ingreso</th>
+            <td mat-cell *matCellDef="let element"> example date </td>
+        </ng-container>
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef> Edicion </th>
+          <td mat-cell *matCellDef="let element" (click)="onEdit(element.code)"> Editar </td>
+        </ng-container>
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef> Borrar </th>
+          <td mat-cell *matCellDef="let element" (click)="onDelete(element.code)"> Borrrar </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    
+</div>

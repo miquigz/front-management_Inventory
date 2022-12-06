@@ -1,0 +1,92 @@
+<div class="flex min-h-screen w-full items-center justify-center bg-gray-400/25 z-10 absolute" >
+    <div class="bg-gray-600 w-6/12 flex flex-col justify-center p-2 rounded-md">
+        <div class="w-full flex">
+            <h2 class="w-full mx-2 text-2xl text-gray-200 font-semi-bold mb-2">Agregar Empleado</h2>
+            <button class="justify-self-end justify-self-end p-1 bg-rose-600/75 rounded-lg sm:hover:text-white sm:hover:bg-rose-800 transition"
+        (click)="closeModalForm()">Cerrar</button>
+        </div>
+        
+        <form (ngSubmit)="addEmployeSubmit(employeeForm)" [formGroup]="employeeForm" class="example-form">
+            <mat-form-field class="w-full">
+                <mat-label>Nombre</mat-label>
+                <input formControlName="name" matInput class="border">
+                <mat-error *ngIf="employeeForm.controls['name'].hasError('required')">
+                    El nombre es <strong>necesario</strong>
+                </mat-error>
+                <mat-error *ngIf="employeeForm.controls['name'].hasError('minlength')">
+                    El nombre debe contener almenos <strong>4 caracteres</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-full">
+                <mat-label>Apellido</mat-label>
+                <input formControlName="lastname" matInput class="border">
+                <mat-error *ngIf="employeeForm.controls['lastname'].hasError('required')">
+                    El apellido es <strong>necesario</strong>
+                </mat-error>
+                <mat-error *ngIf="employeeForm.controls['lastname'].hasError('minlength')">
+                    El apellido debe contener almenos <strong>7 caracteres</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-full">
+                <mat-label>Edad</mat-label>
+                <input formControlName="age" matInput class="border">
+                <mat-error *ngIf="employeeForm.controls['age'].hasError('required')">
+                    El apellido es <strong>necesario</strong>
+                </mat-error>
+                <mat-error *ngIf="employeeForm.controls['age'].hasError('minlength')">
+                    El apellido debe contener almenos <strong>7 caracteres</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-full">
+                <mat-label>Email</mat-label>
+                <input formControlName="email" matInput class="border">
+                <mat-error *ngIf="employeeForm.controls['email'].hasError('email') && !employeeForm.hasError('required')">
+                    Please enter a valid email address
+                </mat-error>
+                <mat-error *ngIf="employeeForm.controls['email'].hasError('required')">
+                    Email is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+        
+            <mat-form-field class="w-full">
+                <mat-label>Ocupacion</mat-label>
+                <input formControlName="occupation" matInput type="text" placeholder="Ejemplo: Cajero">
+                <mat-error *ngIf="employeeForm.controls['occupation'].hasError('required')">
+                    La ocupacion es <strong>necesaria</strong>
+                </mat-error>
+                <mat-error *ngIf="employeeForm.controls['occupation'].hasError('minlength')">
+                    La ocupacion debe contener almenos <strong>5 caracteres</strong>
+                </mat-error>
+            </mat-form-field>
+                    
+            <mat-form-field class="w-full">
+                <mat-label>Salario</mat-label>
+                <input formControlName="salary" matInput type="number" placeholder="Ejemplo: 1000">
+                <mat-error *ngIf="employeeForm.controls['salary'].hasError('required')">
+                    El campo salario es <strong>necesario</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-full">
+                <mat-label>Direccion</mat-label>
+                <input formControlName="address" matInput type="text" placeholder="Ejemplo: 1000">
+                <mat-error *ngIf="employeeForm.controls['address'].hasError('minlength')">
+                    La direccion debe contener almenos <strong>5 caracteres</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-full">
+                <mat-label>Celular</mat-label>
+                <input formControlName="phone" matInput type="number" placeholder="Ejemplo: 1000">
+                <mat-error *ngIf="employeeForm.controls['phone'].hasError('minlength')">
+                    El campo celular debe contener almenos <strong>10 numeros</strong>
+                </mat-error>
+            </mat-form-field>
+             <!-- //TODO: Hacer for/iterar cada campo -->
+            <div class="mt-2 w-full flex">
+                <div class="mx-2">
+                    <button mat-raised-button color="primary">Agregar Empleado</button>
+                </div>
+                <button type="button"  mat-raised-button color="accent" (click)="closeModalForm()">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>

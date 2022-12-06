@@ -13,10 +13,9 @@ import { environment } from './../../../environments/environment.prod';
   providedIn: 'root'
 })
 export class AuthService {
-  AUTH_SERVER: string = environment.SERVER + '';
+  AUTH_SERVER: string = environment.SERVER + '/api/v1/auth';
   authSubject = new BehaviorSubject(false);
   private token!: string;
-
 
   constructor(private httpClient:HttpClient) { }
 
@@ -27,9 +26,7 @@ export class AuthService {
           if(res){//save token
             this.saveToken( res.dataUser.accessToken ,  res.dataUser.expiresIn );
       }}));
-
   }
-
   
   login( user:UserI):Observable<JwtResponseI>{
     return this.httpClient.post<JwtResponseI>(`${this.AUTH_SERVER}/login`,user)
@@ -38,7 +35,6 @@ export class AuthService {
           if(res){//save token  
             this.saveToken( res.dataUser.accessToken , res.dataUser.expiresIn );
       }}));
-      
   }
 
   logout():void{
@@ -47,17 +43,16 @@ export class AuthService {
     localStorage.removeItem("EXPIRES_IN");
   }
 
-  private saveToken(token:string,expiresIn:string):void{
+  private saveToken(token:string , expiresIn:string):void{
     localStorage.setItem("ACCESS_TOKEN",token);
     localStorage.setItem("EXPIRES_IN",expiresIn);
     this.token = token;
   }
-
+  
   private getToken():string{
     if(!this.token){
       this.token = localStorage.getItem("ACCESS_TOKEN") || '';
     }
     return this.token;
-
   }
 }

@@ -25,13 +25,15 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  loginSubmit(){
-    if (this.loginForm.valid )
-      this.authService.login(this.loginForm.value)
+  loginSubmit(form:FormGroup){
+    if (form.valid ){
+    console.log("condicion")
+      this.authService.login(form.value)
       .subscribe({
         next: (res)=>{console.log(res); this.router.navigate(['/home']);},
         error: (err)=>{console.log("ERROR EN LoginSubmit", err);}
       });
+    }
   }
 
 }

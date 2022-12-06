@@ -2,10 +2,10 @@
 
   <div class="bg-gray-800/75 p-2 text-white rounded-lg shadow-lg">
     <h2 class="text-center w-full mb-2 text-xl">Iniciar Sesion</h2>
-    <form [formGroup]="loginForm" class="example-form">
+    <form (ngSubmit)="loginSubmit(loginForm)" [formGroup]="loginForm" class="example-form">
       <mat-form-field class="w-full">
         <mat-label>Email</mat-label>
-        <input matInput class="border">
+        <input formControlName="email" matInput class="border">
         <mat-error *ngIf="loginForm.controls['email'].hasError('email') && !loginForm.hasError('required')">
           Please enter a valid email address
         </mat-error>
@@ -13,16 +13,27 @@
             Email is <strong>required</strong>
         </mat-error>
       </mat-form-field>
-    
       <mat-form-field class="w-full">
         <mat-label>Contrase'ia</mat-label>
-        <input matInput type="password">
+        <input formControlName="password" matInput type="password">
+        <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+            La contrasenia es <strong>necesaria</strong>
+        </mat-error>
+        <mat-error *ngIf="loginForm.controls['password'].hasError('minlength')">
+            La contrasen'ia debe contener almenos <strong>7 caracteres</strong>
+        </mat-error>
       </mat-form-field>
+
       <div class="mt-2">
         <span class="bg-rose-400 py-1.5 rounded-lg mt-4">
-            <button mat-button color="primary" [disabled]="loginForm.invalid">Iniciar Sesion</button>
+            <button mat-button color="primary">Iniciar Sesion</button>
+        </span>
+        <span class="mx-2">
+          <a routerLink="/auth/signup" class="text-blue-400 text-underline">Registrarse</a>
         </span>
     </div>
     </form>
   </div>
 </div>
+{{loginForm.controls['password'].errors | json}}
+{{loginForm.controls['email'].errors | json}}

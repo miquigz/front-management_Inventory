@@ -1,0 +1,94 @@
+<h1 mat-dialog-title>Agregar Producto</h1>
+<div mat-dialog-content>
+    <form [formGroup]="newProductForm">
+        <mat-form-field>
+            <input matInput formControlName="code" placeholder="Codigo">
+            <mat-error *ngIf="newProductForm.hasError('code') && !newProductForm.hasError('required')">
+                Please enter a valid code.
+              </mat-error>
+              <mat-error *ngIf="newProductForm.hasError('required')">
+                Email is <strong>required</strong>
+              </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Name" formControlName="name">
+            <mat-error *ngIf="newProductForm.hasError('name') && !newProductForm.hasError('required')">
+                Please enter a valid name.
+              </mat-error>
+              <mat-error *ngIf="newProductForm.hasError('required')">
+                Name is <strong>required</strong>
+              </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="description" formControlName="description">
+            <mat-error *ngIf="newProductForm.hasError('name') && !newProductForm.hasError('required')">
+                Please enter a valid description.
+              </mat-error>
+              <mat-error *ngIf="newProductForm.hasError('required')">
+                Description is <strong>required</strong>
+              </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Price" formControlName="price">
+            <mat-error *ngIf="newProductForm.hasError('price') && !newProductForm.hasError('required')">
+                Please enter a valid price.
+              </mat-error>
+              <mat-error *ngIf="newProductForm.hasError('required')">
+                Field Price is <strong>required</strong>
+              </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>IVA</mat-label>
+            <input matInput placeholder="Example: 0.21" type="number" formControlName="iva">
+            <mat-error *ngIf="newProductForm.hasError('iva') && !newProductForm.hasError('required')">
+                Please enter a valid name.
+              </mat-error>
+              <mat-error *ngIf="newProductForm.hasError('required')">
+                Email is <strong>required</strong>
+              </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Stock" >
+            <mat-error *ngIf="newProductForm.hasError('name') && !newProductForm.hasError('required')">
+                Please enter a valid name.
+              </mat-error>
+              <mat-error *ngIf="newProductForm.hasError('required')">
+                Email is <strong>required</strong>
+              </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Restock" >
+            <mat-error *ngIf="newProductForm.hasError('name') && !newProductForm.hasError('required')">
+                Please enter a valid name.
+              </mat-error>
+              <mat-error *ngIf="newProductForm.hasError('required')">
+                Email is <strong>required</strong>
+              </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Category" >
+            <mat-error *ngIf="newProductForm.hasError('name') && !newProductForm.hasError('required')">
+                Please enter a valid name.
+              </mat-error>
+              <mat-error *ngIf="newProductForm.hasError('required')">
+                Email is <strong>required</strong>
+              </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Source">
+            <mat-error *ngIf="newProductForm.hasError('name') && !newProductForm.hasError('required')">
+                Please enter a valid name.
+              </mat-error>
+              <mat-error *ngIf="newProductForm.hasError('required')">
+                Email is <strong>required</strong>
+              </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input disabled matInput placeholder="Final Price" [value]="(newProductForm.value.iva + 1) * newProductForm.value.price | currency">
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button type="button" color="primary" (click)="close()" mat-raised-button>Agregar</button>
+    <button mat-button mat-dialog-close>Cancelar</button>
+</div>

@@ -44,8 +44,11 @@
                 </mat-error>
             </mat-form-field>
             <div class="mt-2">
-                <span class="bg-rose-400 py-1.5 rounded-lg mt-4">
-                    <button mat-button color="primary" [disabled]="registerForm.invalid">Iniciar Sesion</button>
+                <span class="bg-rose-400 py-1.5 rounded-lg mt-4" [class.text-black]="registerForm.invalid">
+                    <button mat-button color="primary"  [disabled]="registerForm.invalid">Registrarse</button>
+                </span>
+                <span>
+                    <a routerLink="/auth" class="mx-2 text-blue-400 text-underline">Ya tengo una cuenta</a>
                 </span>
             </div>
         </form>
