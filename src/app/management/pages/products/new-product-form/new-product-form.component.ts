@@ -29,7 +29,7 @@ export class NewProductFormComponent implements OnInit {
 
   close(){
     console.log("emited");
-    console.log(this.newProductForm.value);
+    console.log(this.newProductForm.value.iva);
     this.dialogRef.close();
   }
 }
