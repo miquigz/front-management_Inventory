@@ -1,3 +1,4 @@
+import { GestionService } from './../../../services/gestion.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -11,7 +12,10 @@ export class NewProductFormComponent implements OnInit {
 
   newProductForm!:FormGroup;
 
-  constructor(public dialogRef: MatDialogRef<NewProductFormComponent>, private fs:FormBuilder) { }
+  constructor(public dialogRef: MatDialogRef<NewProductFormComponent>,
+              private fs:FormBuilder,
+              private gestionService:GestionService
+              ) { }
 
   ngOnInit(): void {
     this.newProductForm = this.fs.group({
@@ -28,8 +32,11 @@ export class NewProductFormComponent implements OnInit {
   }
 
   close(){
-    console.log("emited");
-    console.log(this.newProductForm.value.iva);
+    this.gestionService.createProduct(this.newProductForm.value)
+    .subscribe({
+      next:(data) => console.log(data),
+      error:(error) => console.log(error)//TODO: Messagge error front
+    });
     this.dialogRef.close();
   }
 }

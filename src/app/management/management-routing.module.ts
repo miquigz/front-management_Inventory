@@ -1,3 +1,5 @@
+import { AnalisisComponent } from './pages/analisis/analisis.component';
+import { HomeComponent } from './pages/home/home.component';
 import { EmployeesComponent } from './pages/employees/employees.component';
 import { LayoutComponent } from './layout/layout.component';
 import { ProductsComponent } from './pages/products/products.component';
@@ -10,12 +12,20 @@ const routes: Routes = [
     component: LayoutComponent,
     children:[
       {
+        path:'',
+        component:HomeComponent
+      },
+      {
         path:'productos',
         component: ProductsComponent
       },
       {
         path:'empleados',
         component: EmployeesComponent
+      },
+      {
+        path:'analisis',
+        component: AnalisisComponent
       }
     ]
   }

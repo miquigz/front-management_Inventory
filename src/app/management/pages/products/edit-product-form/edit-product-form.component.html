@@ -1,90 +1,93 @@
-<h1 mat-dialog-title>Agregar Producto</h1>
+<h1 mat-dialog-title>Editar Producto: <span class="text-rose-300">{{actualCode}}</span></h1>
 <div mat-dialog-content>
-    <form [formGroup]="newProductForm">
+    <form [formGroup]="editProductForm">
         <mat-form-field>
             <input matInput formControlName="code" placeholder="Codigo">
-            <mat-error *ngIf="newProductForm.hasError('code') && !newProductForm.hasError('required')">
+            <mat-error *ngIf="editProductForm.hasError('code') && !editProductForm.hasError('required')">
                 Please enter a valid code.
-              </mat-error>
-              <mat-error *ngIf="newProductForm.hasError('required')">
-                Email is <strong>required</strong>
-              </mat-error>
+            </mat-error>
+            <mat-error *ngIf="editProductForm.hasError('required')">
+            Email is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="editProductForm.hasError('whitespace')">
+            <strong>withespace</strong> code..
+            </mat-error>
         </mat-form-field>
         <mat-form-field>
             <input matInput placeholder="Name" formControlName="name">
-            <mat-error *ngIf="newProductForm.hasError('name') && !newProductForm.hasError('required')">
+            <mat-error *ngIf="editProductForm.hasError('name') && !editProductForm.hasError('required')">
                 Please enter a valid name.
               </mat-error>
-              <mat-error *ngIf="newProductForm.hasError('required')">
+              <mat-error *ngIf="editProductForm.hasError('required')">
                 Name is <strong>required</strong>
               </mat-error>
         </mat-form-field>
         <mat-form-field>
             <input matInput placeholder="description" formControlName="description">
-            <mat-error *ngIf="newProductForm.hasError('name') && !newProductForm.hasError('required')">
+            <mat-error *ngIf="editProductForm.hasError('name') && !editProductForm.hasError('required')">
                 Please enter a valid description.
               </mat-error>
-              <mat-error *ngIf="newProductForm.hasError('required')">
+              <mat-error *ngIf="editProductForm.hasError('required')">
                 Description is <strong>required</strong>
               </mat-error>
         </mat-form-field>
         <mat-form-field>
             <input matInput placeholder="Price" formControlName="price">
-            <mat-error *ngIf="newProductForm.hasError('price') && !newProductForm.hasError('required')">
+            <mat-error *ngIf="editProductForm.hasError('price') && !editProductForm.hasError('required')">
                 Please enter a valid price.
               </mat-error>
-              <mat-error *ngIf="newProductForm.hasError('required')">
+              <mat-error *ngIf="editProductForm.hasError('required')">
                 Field Price is <strong>required</strong>
               </mat-error>
         </mat-form-field>
         <mat-form-field>
             <mat-label>IVA</mat-label>
             <input matInput placeholder="Example: 0.21" type="number" formControlName="iva">
-            <mat-error *ngIf="newProductForm.hasError('iva') && !newProductForm.hasError('required')">
+            <mat-error *ngIf="editProductForm.hasError('iva') && !editProductForm.hasError('required')">
                 Please enter a valid name.
               </mat-error>
-              <mat-error *ngIf="newProductForm.hasError('required')">
+              <mat-error *ngIf="editProductForm.hasError('required')">
                 Email is <strong>required</strong>
               </mat-error>
         </mat-form-field>
         <mat-form-field>
             <input matInput type="number" placeholder="Stock" formControlName="stock" >
-            <mat-error *ngIf="newProductForm.hasError('stock') && !newProductForm.hasError('required')">
+            <mat-error *ngIf="editProductForm.hasError('stock') && !editProductForm.hasError('required')">
                 Please enter a valid name.
               </mat-error>
-              <mat-error *ngIf="newProductForm.hasError('required')">
+              <mat-error *ngIf="editProductForm.hasError('required')">
                 Email is <strong>required</strong>
               </mat-error>
         </mat-form-field>
         <mat-form-field>
             <input matInput placeholder="Restock" type="number" formControlName="monthlyStock" >
-            <mat-error *ngIf="newProductForm.hasError('monthlyStock') && !newProductForm.hasError('required')">
+            <mat-error *ngIf="editProductForm.hasError('monthlyStock') && !editProductForm.hasError('required')">
                 Please enter a valid name.
               </mat-error>
-              <mat-error *ngIf="newProductForm.hasError('required')">
+              <mat-error *ngIf="editProductForm.hasError('required')">
                 Email is <strong>required</strong>
               </mat-error>
         </mat-form-field>
         <mat-form-field>
             <input matInput placeholder="Category" formControlName="category" >
-            <mat-error *ngIf="newProductForm.hasError('category') && !newProductForm.hasError('required')">
+            <mat-error *ngIf="editProductForm.hasError('category') && !editProductForm.hasError('required')">
                 Please enter a valid name.
               </mat-error>
-              <mat-error *ngIf="newProductForm.hasError('required')">
+              <mat-error *ngIf="editProductForm.hasError('required')">
                 Email is <strong>required</strong>
               </mat-error>
         </mat-form-field>
         <mat-form-field>
             <input matInput placeholder="Source" formControlName="source">
-            <mat-error *ngIf="newProductForm.hasError('source') && !newProductForm.hasError('required')">
+            <mat-error *ngIf="editProductForm.hasError('source') && !editProductForm.hasError('required')">
                 Please enter a valid name.
               </mat-error>
-              <mat-error *ngIf="newProductForm.hasError('required')">
+              <mat-error *ngIf="editProductForm.hasError('required')">
                 Email is <strong>required</strong>
               </mat-error>
         </mat-form-field>
         <mat-form-field>
-            <input disabled matInput placeholder="Final Price" [value]="(newProductForm.value.iva + 1) * newProductForm.value.price | currency">
+            <input disabled matInput placeholder="Final Price" [value]="(editProductForm.value.iva + 1) * editProductForm.value.price | currency">
         </mat-form-field>
     </form>
 </div>

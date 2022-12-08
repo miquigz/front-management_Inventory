@@ -3,28 +3,37 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { MaterialModule } from '../material/material.module';
+import { NgChartsModule } from 'ng2-charts';
 
-import { ProductsComponent } from './pages/products/products.component';
 import { ManagementRoutingModule } from './management-routing.module';
+import { ProductsComponent } from './pages/products/products.component';
 import { LayoutComponent } from './layout/layout.component';
 import { EmployeesComponent } from './pages/employees/employees.component';
 import { EmployeeFormComponent } from './pages/employees/employee-form/employee-form.component';
 import { NewProductFormComponent } from './pages/products/new-product-form/new-product-form.component';
+import { EditProductFormComponent } from './pages/products/edit-product-form/edit-product-form.component';
+import { HomeComponent } from './pages/home/home.component';
+import { AnalisisComponent } from './pages/analisis/analisis.component';
+
 
 
 @NgModule({
   imports: [
     CommonModule,
-    ManagementRoutingModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgChartsModule,
+    ManagementRoutingModule
   ],
   declarations: [
     ProductsComponent,
     LayoutComponent,
     EmployeesComponent,
     EmployeeFormComponent,
-    NewProductFormComponent
+    NewProductFormComponent,
+    EditProductFormComponent,
+    HomeComponent,
+    AnalisisComponent
   ]
 })
 export class ManagementModule { }

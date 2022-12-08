@@ -1,59 +1,84 @@
+import { EditProductFormComponent } from './edit-product-form/edit-product-form.component';
+import { GestionService } from './../../services/gestion.service';
 import { NewProductFormComponent } from './new-product-form/new-product-form.component';
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import { AfterViewInit, Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 
 import {MatDialog} from '@angular/material/dialog';
-
-const ELEMENT_DATA:any = [
-  {code:'B834', name:'Sprite' , price: 1.99, iva:0.21 ,stock: 10, source: 'Coca Cola Company', description:'Sprite drink', category:'Drinks', restock:280},
-  {code:'B831', name: 'Fanta', price: 1.99, iva:0.21 ,stock: 10, source: 'Coca Cola Company', description:'Fanta drink', category:'Drinks', restock:280},
-  {code:'B832', name: 'Pepsi', price: 1.99, iva:0.21, stock: 10, source: 'Pepsi Company', description:'Pepsi drink', category:'Drinks', restock:280},
-  {code:'B834', name: '7up', price: 1.99, iva:0.21, stock: 10, source: 'Pepsi Company', description:'7up drink', category:'Drinks', restock:280},
-  {code:'B836', name: 'Pepsi', price: 1.99, iva:0.21, stock: 10, source: 'Pepsi Company', description:'Pepsi drink', category:'Drinks', restock:280},
-  {code:'B837', name: '7up', price: 1.99, iva:0.21, stock: 10, source: 'Pepsi Company', description:'7up drink', category:'Drinks', restock:280},
-  {code:'B830', name: 'Pepsi', price: 1.99, iva:0.21, stock: 10, source: 'Pepsi Company', description:'Pepsi drink', category:'Drinks', restock:280},
-  {code:'B839', name: '7up', price: 1.99, iva:0.21, stock: 10, source: 'Pepsi Company', description:'7up drink', category:'Drinks', restock:280},
-  {code:'B832', name: 'Pepsi', description:'Pepsi drink', iva:0.21, price: 1.99, stock: 10, category:'Drinks', source: 'Pepsi Company', restock:280},
-];
+import { Product } from '../../interfaces/product';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements AfterViewInit{
-  displayedColumns: string[] = [ 'code', 'name', 'description', 'price','iva','finalPrice', 'stock','restock','category', 'source', 'edit', 'delete'];
+export class ProductsComponent implements AfterViewInit, OnInit, OnDestroy{
+  displayedColumns: string[] = [ 'code', 'name', 'description', 'price','iva','finalPrice', 'stock','monthlyStock','category', 'source', 'edit', 'delete'];
   // dataSource = ELEMENT_DATA;
-  dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
+  dataSource:MatTableDataSource<Product> = new MatTableDataSource<Product>();
+
+  subProducts!:Subscription;
+  subClosedAddProduct!:Subscription;
+  subClosedEditProduct!:Subscription;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
+
   
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private gestionService:GestionService) { }
 
-
-
-  onAdd(){
-    console.log("add product");
+  ngOnInit(): void {
+    this.refreshTable();
   }
 
-  openModal(){
-    console.log("open modal");
-    this.dialog.open(NewProductFormComponent);
+  ngAfterViewInit() {
+    // this.dataSource.paginator = this.paginator;
+  }
+
+  ngOnDestroy(){
+    this.subProducts.unsubscribe();
+    this.subClosedAddProduct?.unsubscribe();
+    this.subClosedEditProduct?.unsubscribe();
+  }
+
+  openModal(){ //addproduct
+    this.subClosedAddProduct = this.dialog.open(NewProductFormComponent)
+    .afterClosed().subscribe((_)=>{
+      this.refreshTable();
+    });
   }
 
   onEdit(code:string){
-    console.log(code);
-    //TODO: Sweet alert to edit.
+    this.subClosedEditProduct = this.dialog.open(EditProductFormComponent, {
+      data: {code:code}
+    })
+    .afterClosed().subscribe((_)=>{
+      this.refreshTable();
+    });
   }
 
   onDelete(code:string){
     console.log(code);
-    //TODO: Sweet alert, confirm delete.
+    this.gestionService.deleteProduct(code).subscribe({
+      next: (data:any) => { console.log(data); this.refreshTable(); },
+      error: (err:any) => { console.log(err); }
+    })
+  }
+
+  refreshTable():void{
+    this.subProducts = this.gestionService.getProducts().subscribe(
+      {
+        next: (products:Product[]) => {
+          this.dataSource.data = products;
+          // console.log(products);
+          this.dataSource.paginator = this.paginator;
+        },
+        error: (err:any) => { console.log(err); }
+      }
+    )
   }
 
 }

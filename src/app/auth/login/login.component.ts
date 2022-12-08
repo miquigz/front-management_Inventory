@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     console.log("condicion")
       this.authService.login(form.value)
       .subscribe({
-        next: (res)=>{console.log(res); this.router.navigate(['/home']);},
+        next: (res)=>{console.log(res); this.router.navigate(['/']);},
         error: (err)=>{console.log("ERROR EN LoginSubmit", err);}
       });
     }
