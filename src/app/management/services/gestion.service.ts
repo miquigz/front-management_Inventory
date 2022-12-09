@@ -30,6 +30,10 @@ export class GestionService {
     return this.http.get<Product>(`${this._server}/product/specific/${code}`, {headers: this.headers});
   }
 
+  getCategoriesProduct():Observable<string[]>{
+    return this.http.get<string[]>(`${this._server}/product/categories`, {headers: this.headers});
+  }
+
 
   createProduct(prod:Product){
     return this.http.post(`${this._server}/product/create`, prod, {headers: this.headers});

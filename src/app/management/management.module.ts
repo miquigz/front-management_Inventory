@@ -14,6 +14,9 @@ import { NewProductFormComponent } from './pages/products/new-product-form/new-p
 import { EditProductFormComponent } from './pages/products/edit-product-form/edit-product-form.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AnalisisComponent } from './pages/analisis/analisis.component';
+import { ChartEmployeesComponent } from './pages/analisis/chart-employees/chart-employees.component';
+import { ChartProductsComponent } from './pages/analisis/chart-products/chart-products.component';
+import { ChartStocksComponent } from './pages/analisis/chart-stocks/chart-stocks.component';
 
 
 
@@ -33,7 +36,10 @@ import { AnalisisComponent } from './pages/analisis/analisis.component';
     NewProductFormComponent,
     EditProductFormComponent,
     HomeComponent,
-    AnalisisComponent
+    AnalisisComponent,
+    ChartEmployeesComponent,
+    ChartProductsComponent,
+    ChartStocksComponent
   ]
 })
 export class ManagementModule { }

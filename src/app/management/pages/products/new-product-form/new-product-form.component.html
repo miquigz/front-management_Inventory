@@ -38,6 +38,15 @@
               </mat-error>
         </mat-form-field>
         <mat-form-field>
+          <input matInput placeholder="Acquisition Price" formControlName="acquisitionPrice">
+          <mat-error *ngIf="newProductForm.hasError('acquisitionPrice') && !newProductForm.hasError('required')">
+              Please enter a valid acquisitionPrice.
+            </mat-error>
+            <mat-error *ngIf="newProductForm.hasError('required')">
+              Field acquisitionPrice is <strong>required</strong>
+            </mat-error>
+      </mat-form-field>
+        <mat-form-field>
             <mat-label>IVA</mat-label>
             <input matInput placeholder="Example: 0.21" type="number" formControlName="iva">
             <mat-error *ngIf="newProductForm.hasError('iva') && !newProductForm.hasError('required')">

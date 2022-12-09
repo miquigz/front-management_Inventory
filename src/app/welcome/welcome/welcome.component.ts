@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomeComponent implements OnInit {
 
+  withToken:boolean = false;
   constructor() { }
 
   ngOnInit(): void {
+    this.withToken = localStorage.getItem('ACCESS_TOKEN') !== null;
   }
 
 }

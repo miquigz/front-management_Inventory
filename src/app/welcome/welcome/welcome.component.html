@@ -1,1 +1,28 @@
-<p>welcome works!</p>
+<div class="min-h-screen bg-gray-700/75 flex justify-center items-center flex-wrap flex-col">
+    <h1 class="text-2xl text-white font-semi-bold pt-4 justify-self-start my-4">Inventory Management</h1>
+    <div class="bg-rose-300/75 py-4 rounded-lg w-4/12 flex justify-center">
+        <ul class="flex">
+            <li routerLink="/auth" class="mx-2 p-2 rounded-lg bg-gray-300 hover:bg-gray-500 sm:hover:text-white cursor-pointer transition">
+                Iniciar Sesion
+            </li>
+            <li routerLink="/auth/signup" class="mx-2 p-2 rounded-lg bg-gray-300 hover:bg-gray-500 sm:hover:text-white cursor-pointer transition">
+                Registrarse
+            </li>
+            <li
+            [ngClass]="{'text-gray-300 bg-gray-600': !withToken}"
+            [routerLink]="withToken? ['/gestion'] : ['']" class="mx-2 p-2 rounded-lg bg-gray-300 hover:bg-gray-500 sm:hover:text-white cursor-pointer transition">
+                Gestion
+            </li>
+        </ul>   
+    </div>
+    <div class="flex w-full justify-self-end">
+        
+    </div>
+    
+    <h3 class="text-center w-full">Redes/contacto:</h3>
+    <ul>
+        <li>Github</li>
+        <li>Linkedin</li>
+        <li>Portfolio</li>
+    </ul>
+</div>

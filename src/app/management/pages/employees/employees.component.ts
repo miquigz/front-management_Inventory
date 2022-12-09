@@ -1,3 +1,4 @@
+import { GestionService } from './../../services/gestion.service';
 import {Component} from '@angular/core';
 
 const ELEMENT_DATA:any = [
@@ -18,15 +19,15 @@ export class EmployeesComponent {
   openModalForm:boolean = false;
 
 
-  constructor() {}
+  constructor(private gestionService:GestionService) {}
 
   onEdit(code:string){
     console.log(code);
     //TODO: Sweet alert to edit.
   }
 
-  onDelete(code:string){
-    console.log(code);
+  onDelete(email:string){
+    this.gestionService.deleteEmployee(email);
     //TODO: Sweet alert, confirm delete.
   }
 

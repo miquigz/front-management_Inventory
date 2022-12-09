@@ -1,4 +1,4 @@
-<div class="w-full flex items-center flex-col flex-wrap items-center py-16 bg-gray-300">
+<div class="w-full flex items-center flex-col flex-wrap items-center py-16 bg-gray-300 min-h-screen">
   <div class="w-full flex items-end">
     <span class="mx-2 self-end mb-2">
       <button mat-raised-button color="primary" (click)="openModal()">Agregar Producto</button>
@@ -28,7 +28,11 @@
     </ng-container>
     <ng-container matColumnDef="iva">
       <th mat-header-cell *matHeaderCellDef> IVA </th>
-      <td mat-cell *matCellDef="let element"> {{element.iva}}%</td>
+      <td mat-cell *matCellDef="let element"> {{element.iva | number:'1.1-2'}}%</td>
+    </ng-container>
+    <ng-container matColumnDef="acquisitionPrice">
+      <th mat-header-cell *matHeaderCellDef> Precio de Fabrica/Proveedor </th>
+      <td mat-cell *matCellDef="let element"> {{element.acquisitionPrice | currency}} </td>
     </ng-container>
     <ng-container matColumnDef="finalPrice">
       <th mat-header-cell *matHeaderCellDef> Precio Final </th>

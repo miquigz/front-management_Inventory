@@ -3,6 +3,7 @@ export interface Product {
     name:string;
     description:string;
     price:number;
+    acquisitionPrice:number;
     stock:number;
     category:string;
     monthlyStock:number;

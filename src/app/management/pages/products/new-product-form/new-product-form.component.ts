@@ -23,6 +23,7 @@ export class NewProductFormComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(3)]],
       description:['', [Validators.required, Validators.minLength(8), Validators.maxLength(100)]],
       price: ['', [Validators.required]],
+      acquisitionPrice: ['', [Validators.required]],
       stock:['', [Validators.required]],
       category: ['', [Validators.required]],
       monthlyStock:['', [Validators.required]],

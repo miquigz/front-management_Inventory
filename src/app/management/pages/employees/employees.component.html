@@ -1,5 +1,5 @@
 <app-employee-form *ngIf="openModalForm" (closeModal)="openModalForm = $event"></app-employee-form>
-<div class="w-full flex items-center flex-col flex-wrap items-center py-16 bg-gray-300">
+<div class="w-full flex items-center flex-col flex-wrap items-center py-16 bg-gray-300 min-h-screen">
 
     <h2 class="text-center text-2xl mb-2 font-semi-bold">Empleados</h2>
     <div class="w-full">
@@ -42,11 +42,11 @@
         </ng-container>
         <ng-container matColumnDef="edit">
           <th mat-header-cell *matHeaderCellDef> Edicion </th>
-          <td mat-cell *matCellDef="let element" (click)="onEdit(element.code)"> Editar </td>
+          <td mat-cell *matCellDef="let element" (click)="onEdit(element.email)"> Editar </td>
         </ng-container>
         <ng-container matColumnDef="delete">
           <th mat-header-cell *matHeaderCellDef> Borrar </th>
-          <td mat-cell *matCellDef="let element" (click)="onDelete(element.code)"> Borrrar </td>
+          <td mat-cell *matCellDef="let element" (click)="onDelete(element.email)"> Borrrar </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

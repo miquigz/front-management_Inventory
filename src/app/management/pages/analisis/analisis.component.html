@@ -1,9 +1,15 @@
-<h2>Gastos Mensuales por cada Empleado</h2>
-<canvas baseChart
-  [type]="'pie'"
-  [datasets]="pieChartDatasets"
-  [labels]="pieChartLabels"
-  [options]="pieChartOptions"
-  [plugins]="pieChartPlugins"
-  [legend]="pieChartLegend">
-</canvas>
+<div class="min-h-screen bg-gray-300 flex items-center justify-center">
+  <hr class="bg-black pt-0.5 w-6/12 mt-4 mb-4">
+  <div class="bg-gray-400/50 rounded-lg p-2">
+    <app-chart-employees></app-chart-employees>
+  </div>
+  <hr class="bg-black pt-0.5 w-6/12 my-4">
+  <div class="bg-gray-400/50 rounded-lg p-2">
+    <app-chart-products></app-chart-products>
+  </div>
+  <hr class="bg-black pt-0.5 w-6/12 my-4">
+  <div class="bg-gray-400/50 rounded-lg p-2">
+    <app-chart-stocks></app-chart-stocks>
+  </div>
+  <hr class="bg-black pt-0.5 w-6/12 my-4">
+</div>

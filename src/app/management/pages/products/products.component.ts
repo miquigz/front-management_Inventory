@@ -8,7 +8,6 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog} from '@angular/material/dialog';
 import { Product } from '../../interfaces/product';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -16,7 +15,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements AfterViewInit, OnInit, OnDestroy{
-  displayedColumns: string[] = [ 'code', 'name', 'description', 'price','iva','finalPrice', 'stock','monthlyStock','category', 'source', 'edit', 'delete'];
+  displayedColumns: string[] = [ 'code', 'name', 'description', 'price', 'acquisitionPrice','iva','finalPrice', 'stock','monthlyStock','category', 'source', 'edit', 'delete'];
   // dataSource = ELEMENT_DATA;
   dataSource:MatTableDataSource<Product> = new MatTableDataSource<Product>();
 
