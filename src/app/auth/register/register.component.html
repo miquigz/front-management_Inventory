@@ -1,5 +1,5 @@
 <div class="min-h-screen flex justify-center items-center flex-wrap">
-    <div class="bg-gray-800/75 sm:w-6/12 p-2 text-white rounded-lg shadow-lg">
+    <div class="bg-stone-700/75 border border-gray-200/50 p-4 text-white rounded-lg shadow-lg  sm:w-6/12">
       <h2 class="text-center w-full mb-2 text-xl">Registrarse</h2>
         <form (ngSubmit)="registerSubmit(registerForm)" [formGroup]="registerForm" class="example-form">
             <mat-form-field class="w-full">
@@ -44,16 +44,11 @@
                 </mat-error>
             </mat-form-field>
             <div class="mt-2">
-                <span class="bg-rose-400 py-1.5 rounded-lg mt-4" [class.text-black]="registerForm.invalid">
-                    <button mat-button color="primary"  [disabled]="registerForm.invalid">Registrarse</button>
-                </span>
+                <button class="ml-1.5 mr-2 py-1.5 px-2 sm:hover:bg-rose-400 transition cursor-pointer cursor-pointer text-center md:mt-3 rounded-lg bg-rose-400/75">Sign up</button>
                 <span>
-                    <a routerLink="/auth" class="mx-2 text-blue-400 text-underline">Ya tengo una cuenta</a>
+                    <a routerLink="/auth" class="text-blue-400 text-underline sm:hover:text-blue-300">Already have an account?</a>
                 </span>
             </div>
         </form>
     </div>
 </div>
-
-{{registerForm.controls['password'].errors | json}}
-<!-- {{registerForm.controls['email']?.hasError('email') | json}} -->

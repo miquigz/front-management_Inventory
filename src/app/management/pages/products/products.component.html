@@ -1,14 +1,15 @@
-<div class="w-full flex items-center flex-col flex-wrap items-center py-16 bg-gray-300 min-h-screen">
-  <div class="w-full flex items-end">
-    <span class="mx-2 self-end mb-2">
-      <button mat-raised-button color="primary" (click)="openModal()">Agregar Producto</button>
+<div class="w-full flex items-center flex-col flex-wrap items-center py-16 bg-stone-700/50 min-h-screen">
+  <div class="w-full flex items-end mt-8">
+    <span class="mx-2 self-end mb-2 w-32">
+      <p (click)="openModal()"
+      class="py-2.5 sm:hover:bg-rose-500/75 sm:hover:text-black sm:hover:font-semibold transition cursor-pointer cursor-pointer px-1 text-center md:mt-3 rounded-lg bg-rose-300/75">Add product</p>
     </span>
     <div class="w-full flex justify-center">
         <h2 class="text-center text-2xl mb-2 font-semi-bold">Productos</h2>
     </div>
   </div>
 
-<table #table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-full text-md">
+<table #table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-full text-md border border-gray-200/50">
 
   <ng-container matColumnDef="code">
     <th mat-header-cell *matHeaderCellDef> Code </th>

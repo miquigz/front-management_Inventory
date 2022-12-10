@@ -1,4 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.mat-button-toggle {
+    
+opacity: 0.5!important;
+width: max-content !important;
+background-color: red !important;
+color: white !important;
+}
+
+.mat-button-toggle-checked {
+    
+opacity: 1!important;
+// background-color: mat-color($accent) !important;
+// color: mat-color($accent, default-contrast) !important;
+}

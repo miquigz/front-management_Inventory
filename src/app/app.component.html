@@ -1,1 +1,42 @@
-<router-outlet></router-outlet>
+
+<mat-sidenav-container class="example-container absolute min-h-screen">
+    <mat-sidenav #sidenav mode="over" class="w-40">
+        <div class="py-4 flex flex-col items-center">
+            <!-- <p class="px-2 pt-1"><button mat-button (click)="sidenav.toggle()">Inventory Management</button></p> -->
+            <div (click)="sidenav.toggle()" 
+            class="sm:hover:bg-rose-500/75 w-10 h-10 min-h-8 mx-3 py-2 
+            bg-rose-300/75 rounded-lg flex justify-center items-center cursor-pointer transition ">
+                <mat-icon>close</mat-icon>
+            </div >
+            <p routerLinkActive="bg-rose-500" [routerLinkActiveOptions]="{ exact:true }" routerLink="auth" class="py-1.5 sm:hover:bg-rose-500/75 sm:hover:text-black sm:hover:font-semibold transition cursor-pointer w-[75%] cursor-pointer px-1 text-center md:mt-3 rounded-lg bg-rose-300/75">Login</p>
+            <p routerLinkActive="bg-rose-500" [routerLinkActiveOptions]="{ exact:true }" routerLink="auth/signup" class="py-1.5 sm:hover:bg-rose-500/75 sm:hover:text-black sm:hover:font-semibold transition cursor-pointer w-[75%] cursor-pointer px-1 text-center md:mt-3 rounded-lg bg-rose-300/75">Register</p>
+            <p routerLinkActive="bg-rose-500" routerLink="management/products" class="py-1.5 sm:hover:bg-rose-500/75 sm:hover:text-black sm:hover:font-semibold transition cursor-pointer w-[75%] cursor-pointer px-1 text-center md:mt-3 rounded-lg bg-rose-300/75">Products</p>
+            <p routerLinkActive="bg-rose-500" routerLink="management/employees" class="py-1.5 sm:hover:bg-rose-500/75 sm:hover:text-black sm:hover:font-semibold transition cursor-pointer w-[75%] cursor-pointer px-1 text-center md:mt-3 rounded-lg bg-rose-300/75">Employees</p>
+            <p routerLinkActive="bg-rose-500" routerLink="management/reports" class="py-1.5 sm:hover:bg-rose-500/75 sm:hover:text-black sm:hover:font-semibold transition cursor-pointer w-[75%] cursor-pointer px-1 text-center md:mt-3 rounded-lg bg-rose-300/75">Reports</p>
+        </div>
+        
+    </mat-sidenav>
+
+    <mat-sidenav-content class="w-full bg-transparent">
+        <nav class="w-full bg-rose-300/75 py-4 flex absolute">
+            <!-- <p class="px-2 pt-1"><button mat-button (click)="sidenav.toggle()">Inventory Management</button></p> -->
+            <div (click)="sidenav.toggle()" 
+            class="sm:hover:bg-[#303030] w-10 h-10 min-h-8 mx-3 py-2 
+            bg-[#303030be] rounded-lg flex justify-center items-center cursor-pointer transition">
+                <mat-icon>menu</mat-icon>
+            </div >
+            <div>
+                <h1 routerLink="" class="cursor-pointer text-2xl mx-2 font-semibold">Inventory Management</h1>
+            </div>
+<!--                         
+            <mat-button-toggle aria-pressed="true" value="justify" aria-label="menu">
+                <mat-icon>menu</mat-icon>
+            </mat-button-toggle> -->
+
+
+        </nav>
+        
+        <router-outlet></router-outlet>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>

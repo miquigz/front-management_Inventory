@@ -1,9 +1,10 @@
 <app-employee-form *ngIf="openModalForm" (closeModal)="openModalForm = $event"></app-employee-form>
-<div class="w-full flex items-center flex-col flex-wrap items-center py-16 bg-gray-300 min-h-screen">
+<div class="w-full flex items-center flex-col flex-wrap items-center py-16 bg-stone-700/50 min-h-screen">
 
-    <h2 class="text-center text-2xl mb-2 font-semi-bold">Empleados</h2>
-    <div class="w-full">
-      <p class="mx-2 mb-2 bg-rose-400/75 w-fit p-2 rounded-lg text-gray-700 cursor-pointer" (click)="addEmployee()">Agregar Empleado</p>
+    <h2 class="text-center text-2xl mb-2 mt-6 font-semi-bold">Employees</h2>
+    <div class="w-32 self-start mb-4 mx-2">
+      <p (click)="addEmployee()"
+      class="py-2.5 sm:hover:bg-rose-500/75 sm:hover:text-black sm:hover:font-semibold transition cursor-pointer cursor-pointer px-1 text-center md:mt-3 rounded-lg bg-rose-300/75">Add Employee</p>
     </div>
     
     <table #table mat-table [dataSource]="employees" class="mat-elevation-z8 w-full" matSort>

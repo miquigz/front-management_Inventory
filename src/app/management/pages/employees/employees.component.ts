@@ -1,25 +1,32 @@
+import { Subscription } from 'rxjs';
+import { Employee } from './../../interfaces/employee';
 import { GestionService } from './../../services/gestion.service';
-import {Component} from '@angular/core';
-
-const ELEMENT_DATA:any = [
-  {name:'John', lastname:'Doe', age:'29', email:'jhondoe@gmail.com', occupation:'Repositor', phone:'(809) 555-5555', address:'Calle 1, #1, Santo Domingo, República Dominicana', salary:'10000'},
-  {name:'Jane', lastname:'Mc', age:'28', email:'janedae@gmail.com', occupation:'Cajera', phone:'(809) 955-5525', address:'Calle 2, #2, Santo Domingo, República Dominicana', salary:'8000'},
-  {name:'John', lastname:'Haz', age:'36', email:'jhondoe@gmail.com', occupation:'Repositor', phone:'(809) 555-5555', address:'Calle 1, #1, Santo Domingo, República Dominicana', salary:'10000'},
-  {name:'Jane', lastname:'Cash', age:'24', email:'janedae@gmail.com', occupation:'Cajera', phone:'(809) 955-5525', address:'Calle 2, #2, Santo Domingo, República Dominicana', salary:'18000'},
-]
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-employees',
   templateUrl: './employees.component.html',
   styleUrls: ['./employees.component.scss']
 })
-export class EmployeesComponent {
+export class EmployeesComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = [ 'name','age', 'occupation','salary','phone', 'address', 'dateAdmission', 'edit', 'delete'];
-  employees = ELEMENT_DATA; //TODO: Tipar, crear interface.
+  employees:Employee[] = [];
   openModalForm:boolean = false;
-
+  subEmployees!:Subscription;
 
   constructor(private gestionService:GestionService) {}
+
+  ngOnInit(): void {
+    this.gestionService.getEmployees().subscribe(employees => {
+      this.employees = employees;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subEmployees?.unsubscribe();
+  }
+
+
 
   onEdit(code:string){
     console.log(code);
