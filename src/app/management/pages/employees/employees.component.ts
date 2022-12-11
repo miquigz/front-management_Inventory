@@ -27,7 +27,6 @@ export class EmployeesComponent implements OnInit, OnDestroy {
   }
 
 
-
   onEdit(code:string){
     console.log(code);
     //TODO: Sweet alert to edit.

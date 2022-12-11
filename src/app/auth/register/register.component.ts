@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
     if (form.valid ){
       this.authService.register(form.value)
       .subscribe({
-        next: (res)=>{console.log(res); this.router.navigate(['/home']);},
+        next: (res)=>{console.log(res); this.router.navigate(['/']);},
         error: (err)=>{console.log("ERROR EN RegisterSubmit", err);}
       })
     }
