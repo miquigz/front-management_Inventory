@@ -10,7 +10,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class NewProductFormComponent implements OnInit {
 
-  newProductForm!:FormGroup;
+  newProductForm:FormGroup = new FormGroup({});
 
   constructor(public dialogRef: MatDialogRef<NewProductFormComponent>,
               private fs:FormBuilder,
@@ -19,25 +19,25 @@ export class NewProductFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.newProductForm = this.fs.group({
-      code:['', [Validators.required, Validators.minLength(3)]],
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      description:['', [Validators.required, Validators.minLength(8), Validators.maxLength(100)]],
-      price: ['', [Validators.required]],
-      acquisitionPrice: ['', [Validators.required]],
-      stock:['', [Validators.required]],
-      category: ['', [Validators.required]],
-      monthlyStock:['', [Validators.required]],
-      iva: [''],
-      source:['']
+      code:            ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
+      name:            ['', [Validators.required, Validators.minLength(3), Validators.maxLength(40)]],
+      description:     ['', [Validators.required, Validators.minLength(8), Validators.maxLength(100)]],
+      price:           ['', [Validators.required, Validators.min(0)]],
+      acquisitionPrice:['', [Validators.required, Validators.min(0)]],
+      stock:           ['', [Validators.required, Validators.min(0)]],
+      category:        ['', [Validators.required, Validators.minLength(3), Validators.maxLength(40)]],
+      monthlyStock:    ['', [Validators.required]],
+      iva:             ['', [Validators.min(0)]],
+      source:          ['', [Validators.minLength(3), Validators.maxLength(10)]]
     });
   }
 
-  close(){
-    this.gestionService.createProduct(this.newProductForm.value)
-    .subscribe({
-      next:(data) => console.log(data),
-      error:(error) => console.log(error)//TODO: Messagge error front
-    });
-    this.dialogRef.close();
+  onSubmit(form:FormGroup){
+    if(form.valid){
+      this.gestionService.createProduct(this.newProductForm.value)
+      this.dialogRef.close();
+    }
   }
+
+
 }

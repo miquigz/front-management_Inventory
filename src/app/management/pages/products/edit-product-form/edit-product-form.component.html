@@ -1,106 +1,115 @@
-<h1 mat-dialog-title>Editar Producto: <span class="text-rose-300">{{actualCode}}</span></h1>
 <div mat-dialog-content>
-    <form [formGroup]="editProductForm">
-        <mat-form-field>
-            <input matInput formControlName="code" placeholder="Codigo">
-            <mat-error *ngIf="editProductForm.hasError('code') && !editProductForm.hasError('required')">
-                Please enter a valid code.
-            </mat-error>
-            <mat-error *ngIf="editProductForm.hasError('required')">
-            Email is <strong>required</strong>
-            </mat-error>
-            <mat-error *ngIf="editProductForm.hasError('whitespace')">
-            <strong>withespace</strong> code..
-            </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Name" formControlName="name">
-            <mat-error *ngIf="editProductForm.hasError('name') && !editProductForm.hasError('required')">
-                Please enter a valid name.
-              </mat-error>
-              <mat-error *ngIf="editProductForm.hasError('required')">
-                Name is <strong>required</strong>
-              </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="description" formControlName="description">
-            <mat-error *ngIf="editProductForm.hasError('name') && !editProductForm.hasError('required')">
-                Please enter a valid description.
-              </mat-error>
-              <mat-error *ngIf="editProductForm.hasError('required')">
-                Description is <strong>required</strong>
-              </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Price" formControlName="price">
-            <mat-error *ngIf="editProductForm.hasError('price') && !editProductForm.hasError('required')">
-                Please enter a valid price.
-              </mat-error>
-              <mat-error *ngIf="editProductForm.hasError('required')">
-                Field Price is <strong>required</strong>
-              </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Acquisition Price" formControlName="acquisitionPrice">
-          <mat-error *ngIf="editProductForm.hasError('acquisitionPrice') && !editProductForm.hasError('required')">
-              Please enter a valid acquisitionPrice.
-            </mat-error>
-            <mat-error *ngIf="editProductForm.hasError('required')">
-              Field acquisitionPrice is <strong>required</strong>
-            </mat-error>
+  <h1 mat-dialog-title>Editar Producto: <span class="text-rose-300">{{actualCode}}</span></h1>
+  <form [formGroup]="editProductForm" class="py-12" (ngSubmit)="onSubmit($event)">
+      <mat-form-field>
+        <input matInput formControlName="code" placeholder="Codigo">
+        <mat-error *ngIf="editProductForm.controls['code'].hasError('pattern')">
+          The field "code" contains <strong>whitespace</strong>
+        </mat-error>
+        <mat-error *ngIf="editProductForm.controls['code'].hasError('required')">
+          The field "code" is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="editProductForm.controls['code'].hasError('minlength')">
+            The field "code" must have at least <strong>3 characters</strong>
+        </mat-error>
+        <mat-error *ngIf="editProductForm.controls['code'].hasError('maxlength')">
+            The field "code" must have a maximum of <strong>10 characters</strong>
+        </mat-error>
       </mat-form-field>
-        <mat-form-field>
-            <mat-label>IVA</mat-label>
-            <input matInput placeholder="Example: 0.21" type="number" formControlName="iva">
-            <mat-error *ngIf="editProductForm.hasError('iva') && !editProductForm.hasError('required')">
-                Please enter a valid name.
-              </mat-error>
-              <mat-error *ngIf="editProductForm.hasError('required')">
-                Email is <strong>required</strong>
-              </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput type="number" placeholder="Stock" formControlName="stock" >
-            <mat-error *ngIf="editProductForm.hasError('stock') && !editProductForm.hasError('required')">
-                Please enter a valid name.
-              </mat-error>
-              <mat-error *ngIf="editProductForm.hasError('required')">
-                Email is <strong>required</strong>
-              </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Restock" type="number" formControlName="monthlyStock" >
-            <mat-error *ngIf="editProductForm.hasError('monthlyStock') && !editProductForm.hasError('required')">
-                Please enter a valid name.
-              </mat-error>
-              <mat-error *ngIf="editProductForm.hasError('required')">
-                Email is <strong>required</strong>
-              </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Category" formControlName="category" >
-            <mat-error *ngIf="editProductForm.hasError('category') && !editProductForm.hasError('required')">
-                Please enter a valid name.
-              </mat-error>
-              <mat-error *ngIf="editProductForm.hasError('required')">
-                Email is <strong>required</strong>
-              </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Source" formControlName="source">
-            <mat-error *ngIf="editProductForm.hasError('source') && !editProductForm.hasError('required')">
-                Please enter a valid name.
-              </mat-error>
-              <mat-error *ngIf="editProductForm.hasError('required')">
-                Email is <strong>required</strong>
-              </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-            <input disabled matInput placeholder="Final Price" [value]="(editProductForm.value.iva + 1) * editProductForm.value.price | currency">
-        </mat-form-field>
-    </form>
-</div>
-<div mat-dialog-actions>
-    <button type="button" color="primary" (click)="close()" mat-raised-button>Agregar</button>
-    <button mat-button mat-dialog-close>Cancelar</button>
+      <mat-form-field>
+        <input matInput formControlName="name" placeholder="Codigo">
+        <mat-error *ngIf="editProductForm.controls['name'].hasError('required')">
+          The field "name" is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="editProductForm.controls['name'].hasError('minlength')">
+          The field "name" must have at least <strong>3 characters</strong>
+        </mat-error>
+        <mat-error *ngIf="editProductForm.controls['name'].hasError('maxlength')">
+          The field "name" must have a maximum of <strong>10 characters</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+          <input matInput placeholder="description" formControlName="description">
+          <mat-error *ngIf="editProductForm.controls['description'].hasError('required')">
+            Please enter a valid description.
+          </mat-error>
+          <mat-error *ngIf="editProductForm.controls['description'].hasError('maxlength')">
+            The field "description" must have a maximum of <strong>100 characters</strong>
+          </mat-error>
+          <mat-error *ngIf="editProductForm.controls['description'].hasError('minlength')">
+            The field "description" must have at least <strong>8 characters</strong>
+          </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Price" formControlName="price">
+        <mat-error *ngIf="editProductForm.controls['price'].hasError('required')">
+          The field "price" is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="editProductForm.controls['price'].hasError('min')">
+          The field "price" must must be greater than or equal to<strong>0</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Acquisition Price" formControlName="acquisitionPrice">
+        <mat-error *ngIf="editProductForm.controls['acquisitionPrice'].hasError('required')">
+          The field "acquisitionPrice" is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="editProductForm.controls['acquisitionPrice'].hasError('min')">
+          The field "acquisitionPrice" must must be greater than or equal to<strong>0</strong>
+        </mat-error>
+    </mat-form-field>
+      <mat-form-field>
+          <input matInput type="number" placeholder="Stock" formControlName="stock" >
+          <mat-error *ngIf="editProductForm.controls['stock'].hasError('required')">
+            Please enter a valid stock.
+          </mat-error>
+          <mat-error *ngIf="editProductForm.controls['stock'].hasError('min')">
+            The field "stock" must must be greater than or equal to <strong>0</strong>
+          </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+          <input matInput placeholder="Restock" type="number" formControlName="monthlyStock" >
+          <mat-error *ngIf="editProductForm.controls['monthlyStock'].hasError('required')">
+            Please enter a valid re-stock.
+          </mat-error>
+          <mat-error *ngIf="editProductForm.controls['monthlyStock'].hasError('min')">
+            The field "re-stock" must must be greater than or equal to <strong>0</strong>
+          </mat-error>
+    </mat-form-field>
+      <mat-form-field>
+          <input matInput placeholder="Category" formControlName="category" >
+          <mat-error *ngIf="editProductForm.controls['category'].hasError('required')">
+            The field "category" is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="editProductForm.controls['category'].hasError('minlength')">
+            The field "category" must have at least <strong>3 characters</strong>
+          </mat-error>
+          <mat-error *ngIf="editProductForm.controls['category'].hasError('maxlength')">
+            The field "category" must have a maximum of <strong>10 characters</strong>
+          </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>IVA</mat-label>
+        <input matInput placeholder="Example: 0.21" type="number" formControlName="iva">
+        <mat-error *ngIf="editProductForm.controls['iva'].hasError('min')">
+          The field "iva" must must be greater than or equal to <strong>0</strong>
+        </mat-error>
+    </mat-form-field>
+      <mat-form-field>
+          <input matInput placeholder="Source" formControlName="source">
+          <mat-error *ngIf="editProductForm.controls['source'].hasError('minlength')">
+            The field "source" must have at least <strong>3 characters</strong>
+          </mat-error>
+          <mat-error *ngIf="editProductForm.controls['source'].hasError('maxlength')">
+            The field "source" must have a maximum of <strong>10 characters</strong>
+          </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+          <input disabled matInput placeholder="Final Price" [value]="(editProductForm.value.iva + 1) * editProductForm.value.price | currency">
+      </mat-form-field>
+      <div mat-dialog-actions>
+        <button type="submit" color="primary" mat-raised-button>Agregar</button>
+        <button mat-button mat-dialog-close>Cancelar</button>
+      </div>
+  </form>
 </div>

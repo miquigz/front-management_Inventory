@@ -1,96 +1,105 @@
 <h1 mat-dialog-title>Agregar Producto</h1>
 <div mat-dialog-content>
-    <form [formGroup]="newProductForm">
+    <form [formGroup]="newProductForm" (ngSubmit)="onSubmit($event)">
         <mat-form-field>
-            <input matInput formControlName="code" placeholder="Codigo">
-            <mat-error *ngIf="newProductForm.hasError('code') && !newProductForm.hasError('required')">
-                Please enter a valid code.
-              </mat-error>
-              <mat-error *ngIf="newProductForm.hasError('required')">
-                Email is <strong>required</strong>
-              </mat-error>
+          <input matInput formControlName="code" placeholder="Codigo">
+          <mat-error *ngIf="newProductForm.controls['code'].hasError('required')">
+            The field "code" is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="newProductForm.controls['code'].hasError('minlength')">
+              The field "code" must have at least <strong>3 characters</strong>
+          </mat-error>
+          <mat-error *ngIf="newProductForm.controls['code'].hasError('maxlength')">
+              The field "code" must have a maximum of <strong>10 characters</strong>
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Name" formControlName="name">
-            <mat-error *ngIf="newProductForm.hasError('name') && !newProductForm.hasError('required')">
-                Please enter a valid name.
-              </mat-error>
-              <mat-error *ngIf="newProductForm.hasError('required')">
-                Name is <strong>required</strong>
-              </mat-error>
+          <input matInput formControlName="name" placeholder="Codigo">
+          <mat-error *ngIf="newProductForm.controls['name'].hasError('required')">
+            The field "name" is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="newProductForm.controls['name'].hasError('minlength')">
+            The field "name" must have at least <strong>3 characters</strong>
+          </mat-error>
+          <mat-error *ngIf="newProductForm.controls['name'].hasError('maxlength')">
+            The field "name" must have a maximum of <strong>10 characters</strong>
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
             <input matInput placeholder="description" formControlName="description">
-            <mat-error *ngIf="newProductForm.hasError('name') && !newProductForm.hasError('required')">
-                Please enter a valid description.
-              </mat-error>
-              <mat-error *ngIf="newProductForm.hasError('required')">
-                Description is <strong>required</strong>
-              </mat-error>
+            <mat-error *ngIf="newProductForm.controls['description'].hasError('required')">
+              Please enter a valid description.
+            </mat-error>
+            <mat-error *ngIf="newProductForm.controls['description'].hasError('maxlength')">
+              The field "description" must have a maximum of <strong>100 characters</strong>
+            </mat-error>
+            <mat-error *ngIf="newProductForm.controls['description'].hasError('minlength')">
+              The field "description" must have at least <strong>8 characters</strong>
+            </mat-error>
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Price" formControlName="price">
-            <mat-error *ngIf="newProductForm.hasError('price') && !newProductForm.hasError('required')">
-                Please enter a valid price.
-              </mat-error>
-              <mat-error *ngIf="newProductForm.hasError('required')">
-                Field Price is <strong>required</strong>
-              </mat-error>
+          <input matInput placeholder="Price" formControlName="price">
+          <mat-error *ngIf="newProductForm.controls['price'].hasError('required')">
+            The field "price" is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="newProductForm.controls['price'].hasError('min')">
+            The field "price" must must be greater than or equal to<strong>0</strong>
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
           <input matInput placeholder="Acquisition Price" formControlName="acquisitionPrice">
-          <mat-error *ngIf="newProductForm.hasError('acquisitionPrice') && !newProductForm.hasError('required')">
-              Please enter a valid acquisitionPrice.
-            </mat-error>
-            <mat-error *ngIf="newProductForm.hasError('required')">
-              Field acquisitionPrice is <strong>required</strong>
-            </mat-error>
+          <mat-error *ngIf="newProductForm.controls['acquisitionPrice'].hasError('required')">
+            The field "acquisitionPrice" is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="newProductForm.controls['acquisitionPrice'].hasError('min')">
+            The field "acquisitionPrice" must must be greater than or equal to<strong>0</strong>
+          </mat-error>
       </mat-form-field>
         <mat-form-field>
-            <mat-label>IVA</mat-label>
-            <input matInput placeholder="Example: 0.21" type="number" formControlName="iva">
-            <mat-error *ngIf="newProductForm.hasError('iva') && !newProductForm.hasError('required')">
-                Please enter a valid name.
-              </mat-error>
-              <mat-error *ngIf="newProductForm.hasError('required')">
-                Email is <strong>required</strong>
-              </mat-error>
-        </mat-form-field>
-        <mat-form-field>
             <input matInput type="number" placeholder="Stock" formControlName="stock" >
-            <mat-error *ngIf="newProductForm.hasError('stock') && !newProductForm.hasError('required')">
-                Please enter a valid name.
-              </mat-error>
-              <mat-error *ngIf="newProductForm.hasError('required')">
-                Email is <strong>required</strong>
-              </mat-error>
+            <mat-error *ngIf="newProductForm.controls['stock'].hasError('required')">
+              Please enter a valid stock.
+            </mat-error>
+            <mat-error *ngIf="newProductForm.controls['stock'].hasError('min')">
+              The field "stock" must must be greater than or equal to <strong>0</strong>
+            </mat-error>
         </mat-form-field>
         <mat-form-field>
             <input matInput placeholder="Restock" type="number" formControlName="monthlyStock" >
-            <mat-error *ngIf="newProductForm.hasError('monthlyStock') && !newProductForm.hasError('required')">
-                Please enter a valid name.
-              </mat-error>
-              <mat-error *ngIf="newProductForm.hasError('required')">
-                Email is <strong>required</strong>
-              </mat-error>
-        </mat-form-field>
+            <mat-error *ngIf="newProductForm.controls['monthlyStock'].hasError('required')">
+              Please enter a valid re-stock.
+            </mat-error>
+            <mat-error *ngIf="newProductForm.controls['monthlyStock'].hasError('min')">
+              The field "re-stock" must must be greater than or equal to <strong>0</strong>
+            </mat-error>
+      </mat-form-field>
         <mat-form-field>
             <input matInput placeholder="Category" formControlName="category" >
-            <mat-error *ngIf="newProductForm.hasError('category') && !newProductForm.hasError('required')">
-                Please enter a valid name.
-              </mat-error>
-              <mat-error *ngIf="newProductForm.hasError('required')">
-                Email is <strong>required</strong>
-              </mat-error>
+            <mat-error *ngIf="newProductForm.controls['category'].hasError('required')">
+              The field "category" is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="newProductForm.controls['category'].hasError('minlength')">
+              The field "category" must have at least <strong>3 characters</strong>
+            </mat-error>
+            <mat-error *ngIf="newProductForm.controls['category'].hasError('maxlength')">
+              The field "category" must have a maximum of <strong>10 characters</strong>
+            </mat-error>
         </mat-form-field>
         <mat-form-field>
+          <mat-label>IVA</mat-label>
+          <input matInput placeholder="Example: 0.21" type="number" formControlName="iva">
+          <mat-error *ngIf="newProductForm.controls['iva'].hasError('min')">
+            The field "iva" must must be greater than or equal to <strong>0</strong>
+          </mat-error>
+      </mat-form-field>
+        <mat-form-field>
             <input matInput placeholder="Source" formControlName="source">
-            <mat-error *ngIf="newProductForm.hasError('source') && !newProductForm.hasError('required')">
-                Please enter a valid name.
-              </mat-error>
-              <mat-error *ngIf="newProductForm.hasError('required')">
-                Email is <strong>required</strong>
-              </mat-error>
+            <mat-error *ngIf="newProductForm.controls['source'].hasError('minlength')">
+              The field "source" must have at least <strong>3 characters</strong>
+            </mat-error>
+            <mat-error *ngIf="newProductForm.controls['source'].hasError('maxlength')">
+              The field "source" must have a maximum of <strong>10 characters</strong>
+            </mat-error>
         </mat-form-field>
         <mat-form-field>
             <input disabled matInput placeholder="Final Price" [value]="(newProductForm.value.iva + 1) * newProductForm.value.price | currency">
@@ -98,6 +107,6 @@
     </form>
 </div>
 <div mat-dialog-actions>
-    <button type="button" color="primary" (click)="close()" mat-raised-button>Agregar</button>
+    <button type="submit" color="primary" [disabled]="!newProductForm.valid" mat-raised-button>Agregar</button>
     <button mat-button mat-dialog-close>Cancelar</button>
 </div>
