@@ -3,7 +3,7 @@
         <div class="w-full flex">
             <h2 class="w-full mx-2 text-2xl text-gray-200 font-semi-bold mb-2">Add Employee</h2>
             <button class="justify-self-end justify-self-end p-1 bg-rose-600/75 rounded-lg sm:hover:text-white sm:hover:bg-rose-800 transition"
-        (click)="closeModalForm()">Cerrar</button>
+        (click)="closeModalForm()">Close</button>
         </div>
         
         <form (ngSubmit)="addEmployeSubmit(employeeForm)" [formGroup]="employeeForm" class="example-form">
@@ -21,7 +21,7 @@
                 <mat-label>Lastname</mat-label>
                 <input formControlName="lastname" matInput class="border">
                 <mat-error *ngIf="employeeForm.controls['lastname'].hasError('required')">
-                    El apellido es <strong>necesario</strong>
+                    Lastname is <strong>required</strong>
                 </mat-error>
                 <mat-error *ngIf="employeeForm.controls['lastname'].hasError('minlength')">
                     The field "lastname" must contain at least<strong>7 characters</strong>
@@ -79,9 +79,9 @@
 <!-- //TODO: Hacer for/iterar cada campo -->
             <div class="mt-2 w-full flex">
                 <div class="mx-2">
-                    <button mat-raised-button color="primary">Agregar Empleado</button>
+                    <button mat-raised-button color="primary">Add Employee</button>
                 </div>
-                <button type="button"  mat-raised-button color="accent" (click)="closeModalForm()">Cancelar</button>
+                <button type="button"  mat-raised-button color="accent" (click)="closeModalForm()">Cancel</button>
             </div>
         </form>
     </div>

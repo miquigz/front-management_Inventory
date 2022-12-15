@@ -1,8 +1,8 @@
-<h1 mat-dialog-title>Agregar Producto</h1>
+<h1 mat-dialog-title>Add Product</h1>
 <div mat-dialog-content>
-    <form [formGroup]="newProductForm" (ngSubmit)="onSubmit($event)">
+    <form (ngSubmit)="onSubmit($event)" [formGroup]="newProductForm" class="py-12">
         <mat-form-field>
-          <input matInput formControlName="code" placeholder="Codigo">
+          <input matInput formControlName="code" placeholder="Code">
           <mat-error *ngIf="newProductForm.controls['code'].hasError('required')">
             The field "code" is <strong>required</strong>
           </mat-error>
@@ -14,7 +14,7 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput formControlName="name" placeholder="Codigo">
+          <input matInput formControlName="name" placeholder="Name">
           <mat-error *ngIf="newProductForm.controls['name'].hasError('required')">
             The field "name" is <strong>required</strong>
           </mat-error>
@@ -104,9 +104,15 @@
         <mat-form-field>
             <input disabled matInput placeholder="Final Price" [value]="(newProductForm.value.iva + 1) * newProductForm.value.price | currency">
         </mat-form-field>
+        <div mat-dialog-actions>
+          <span class="sm:hover:text-stone-600 text-white">
+            <button type="submit" color="primary" mat-raised-button>Aggregate</button>
+          </span>
+          
+          <span class="bg-gray-200 rounded-md text-black sm:hover:text-stone-600 mx-2">
+            <button mat-button mat-dialog-close>Cancel</button>
+          </span>
+          
+      </div>
     </form>
-</div>
-<div mat-dialog-actions>
-    <button type="submit" color="primary" [disabled]="!newProductForm.valid" mat-raised-button>Agregar</button>
-    <button mat-button mat-dialog-close>Cancelar</button>
 </div>

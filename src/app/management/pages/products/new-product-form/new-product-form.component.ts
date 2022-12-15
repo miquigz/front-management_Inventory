@@ -37,6 +37,7 @@ export class NewProductFormComponent implements OnInit {
       this.gestionService.createProduct(this.newProductForm.value)
       this.dialogRef.close();
     }
+    form.markAllAsTouched();
   }
 
 

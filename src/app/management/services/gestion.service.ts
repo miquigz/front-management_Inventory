@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment.prod';
 import { Product } from '../interfaces/product';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root'//TODO: llevar a
 })
 export class GestionService {
 

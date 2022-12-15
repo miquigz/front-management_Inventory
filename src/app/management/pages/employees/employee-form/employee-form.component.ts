@@ -35,13 +35,11 @@ export class EmployeeFormComponent implements OnInit {
 
   addEmployeSubmit(form:FormGroup){
     console.log(form.value);
-    if(form.valid)
+    if(form.valid){
       this.gestionService.createEmployee(form.value);
-    else
-      console.log("invalid form..")//todo:alert
-    
-    console.log(form.valid);
-    this.closeModal.emit(false);
+      this.closeModal.emit(false);
+    }
+    form.markAllAsTouched();
   }
 
 }

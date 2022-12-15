@@ -11,6 +11,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
 
 
+
 @NgModule({
   imports: [
     MatInputModule,
@@ -21,7 +22,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatFormFieldModule,
     MatTableModule,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   exports:[
     MatInputModule,

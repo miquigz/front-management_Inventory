@@ -7,7 +7,7 @@
             class="sm:hover:bg-rose-500/75 w-10 h-10 min-h-8 mx-3 py-2 
             bg-rose-300/75 rounded-lg flex justify-center items-center cursor-pointer transition">
                 <mat-icon>close</mat-icon>
-            </div >
+            </div>
             <p routerLinkActive="bg-rose-500" [routerLinkActiveOptions]="{ exact:true }" routerLink="auth" class="py-1.5 sm:hover:bg-rose-500/75 sm:hover:text-black sm:hover:font-semibold transition cursor-pointer w-[75%] sm:mt-2 mt-1 cursor-pointer px-1 text-center rounded-lg bg-rose-300/75">Login</p>
             <p routerLinkActive="bg-rose-500" [routerLinkActiveOptions]="{ exact:true }" routerLink="auth/signup" class="py-1.5 sm:hover:bg-rose-500/75 sm:hover:text-black sm:hover:font-semibold transition cursor-pointer w-[75%] sm:mt-2 mt-1 cursor-pointer px-1 text-center rounded-lg bg-rose-300/75">Register</p>
             <p routerLinkActive="bg-rose-500" routerLink="management/products" class="py-1.5 sm:hover:bg-rose-500/75 sm:hover:text-black sm:hover:font-semibold transition cursor-pointer w-[75%] cursor-pointer px-1 text-center sm:mt-2 mt-1 rounded-lg bg-rose-300/75">Products</p>
@@ -17,25 +17,17 @@
     </mat-sidenav>
 
     <mat-sidenav-content class="w-full bg-transparent">
-        <nav class="w-full bg-rose-300/75 py-4 flex absolute">
-            <!-- <p class="px-2 pt-1"><button mat-button (click)="sidenav.toggle()">Inventory Management</button></p> -->
+        <div class="w-full bg-rose-300/75 py-4 flex absolute">
+
             <div (click)="sidenav.toggle()" 
             class="sm:hover:bg-[#303030] w-10 h-10 min-h-8 mx-3 py-2 
             bg-[#303030be] rounded-lg flex justify-center items-center cursor-pointer transition">
                 <mat-icon>menu</mat-icon>
-            </div >
-            <div>
-                <h1 routerLink="" class="cursor-pointer text-2xl mx-2 font-semibold">Inventory Management</h1>
             </div>
-<!--                         
-            <mat-button-toggle aria-pressed="true" value="justify" aria-label="menu">
-                <mat-icon>menu</mat-icon>
-            </mat-button-toggle> -->
+            
+            <app-nav></app-nav>
 
-
-        </nav>
-        
+        </div>
         <router-outlet></router-outlet>
-
     </mat-sidenav-content>
 </mat-sidenav-container>

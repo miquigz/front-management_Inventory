@@ -65,6 +65,8 @@ export class EditProductFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit( form:any ){
+    //TODO: Ver porq no edita, cambiar el evento submit si no se puede. pRIMRO VER LO DE ABAJO.
+    //TODO: Maybe edita, ver backend + postman, falta el refresh como pasaba en el add
     console.log(form);
     if (form){
       // this.gestionService.updateProduct(form)
@@ -74,9 +76,8 @@ export class EditProductFormComponent implements OnInit, OnDestroy {
       //   error: (err:any) => { console.log(err); }
       // });
       this.dialogRef.close();
-    }else{
-      this.editProductForm.markAllAsTouched;
     }
+    this.editProductForm.markAllAsTouched;
   }
   
 }

@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       name: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(70)]],
       lastname: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(40)]],
       email: ['', [Validators.required, Validators.email, Validators.maxLength(255)]],
-      password: ['', [Validators.required, Validators.minLength(7)] ]
+      password: ['', [Validators.required, Validators.minLength(8)] ]
     });
 
     console.log(this.registerForm.controls['email'].errors);
