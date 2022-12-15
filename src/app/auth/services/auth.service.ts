@@ -37,6 +37,12 @@ export class AuthService {
       }}));
   }
 
+  validToken( token:string ):Observable<boolean>{
+    return this.httpClient.get<boolean>(`${this.AUTH_SERVER}/validToken/${token}`);
+    //TODO: PASAR POR PARAM, no por headers, en el backend.
+  }
+
+
   logout():void{
     this.token = '';
     localStorage.removeItem("ACCESS_TOKEN");

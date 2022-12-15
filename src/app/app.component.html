@@ -10,9 +10,14 @@
             </div>
             <p routerLinkActive="bg-rose-500" [routerLinkActiveOptions]="{ exact:true }" routerLink="auth" class="py-1.5 sm:hover:bg-rose-500/75 sm:hover:text-black sm:hover:font-semibold transition cursor-pointer w-[75%] sm:mt-2 mt-1 cursor-pointer px-1 text-center rounded-lg bg-rose-300/75">Login</p>
             <p routerLinkActive="bg-rose-500" [routerLinkActiveOptions]="{ exact:true }" routerLink="auth/signup" class="py-1.5 sm:hover:bg-rose-500/75 sm:hover:text-black sm:hover:font-semibold transition cursor-pointer w-[75%] sm:mt-2 mt-1 cursor-pointer px-1 text-center rounded-lg bg-rose-300/75">Register</p>
-            <p routerLinkActive="bg-rose-500" routerLink="management/products" class="py-1.5 sm:hover:bg-rose-500/75 sm:hover:text-black sm:hover:font-semibold transition cursor-pointer w-[75%] cursor-pointer px-1 text-center sm:mt-2 mt-1 rounded-lg bg-rose-300/75">Products</p>
-            <p routerLinkActive="bg-rose-500" routerLink="management/employees" class="py-1.5 sm:hover:bg-rose-500/75 sm:hover:text-black sm:hover:font-semibold transition cursor-pointer w-[75%] cursor-pointer px-1 text-center sm:mt-2 mt-1 rounded-lg bg-rose-300/75">Employees</p>
-            <p routerLinkActive="bg-rose-500" routerLink="management/reports" class="py-1.5 sm:hover:bg-rose-500/75 sm:hover:text-black sm:hover:font-semibold transition cursor-pointer w-[75%] cursor-pointer px-1 text-center sm:mt-2 mt-1 rounded-lg bg-rose-300/75">Reports</p>
+            <p routerLinkActive="bg-rose-500" [ngClass]="{
+                'bg-rose-200/75 cursor-not-allowed text-gray-300': !(validToken$ | async)
+            }" [routerLink]="(validToken$ | async)? 'management/products' : '' " class="py-1.5 sm:hover:bg-rose-500/75 sm:hover:text-black sm:hover:font-semibold transition cursor-pointer w-[75%] cursor-pointer px-1 text-center sm:mt-2 mt-1 rounded-lg bg-rose-300/75">Products</p>
+
+            <p routerLinkActive="bg-rose-500" [ngClass]="{ 'bg-rose-200/75 cursor-not-allowed text-gray-300': !(validToken$ | async) }"
+            [routerLink]="(validToken$ | async)? 'management/employees' : '' " class="py-1.5 sm:hover:bg-rose-500/75 sm:hover:text-black sm:hover:font-semibold transition cursor-pointer w-[75%] cursor-pointer px-1 text-center sm:mt-2 mt-1 rounded-lg bg-rose-300/75">Employees</p>
+            <p routerLinkActive="bg-rose-500" [ngClass]="{ 'bg-rose-200/75 cursor-not-allowed text-gray-300': !(validToken$ | async) }"
+            [routerLink]="(validToken$ | async)? 'management/reports' : '' " class="py-1.5 sm:hover:bg-rose-500/75 sm:hover:text-black sm:hover:font-semibold transition cursor-pointer w-[75%] cursor-pointer px-1 text-center sm:mt-2 mt-1 rounded-lg bg-rose-300/75">Reports</p>
         </div>
     </mat-sidenav>
 

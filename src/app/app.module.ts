@@ -1,3 +1,4 @@
+import { JwtGuard } from './guards/jwt.guard';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -19,7 +20,7 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     CoreModule
   ],
-  providers: [],
+  providers: [JwtGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

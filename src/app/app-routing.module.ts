@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { JwtGuard } from './guards/jwt.guard';
+
 const routes: Routes = [
   {
     path:'',
@@ -12,6 +14,7 @@ const routes: Routes = [
   },
   {
     path:'management',
+    canLoad: [JwtGuard],
     loadChildren: ()=> import('./management/management.module').then(m => m.ManagementModule)
   }
 ];
